@@ -15,9 +15,8 @@ class Wheel:
     def __str__(self):
         return f"wheel_diameter: {self.wheel_diameter}, aspect_ratio: {self.aspect_ratio}, construction_type: {self.construction_type}, load_index: {self.load_index}"
     
-    def rotating():
-        #----------------code of rotating------------------#
-        pass
+    def rotating(self):
+        print('You spin me right `round, baby, right `round')
     
 
 
@@ -37,5 +36,5 @@ class Car(Wheel):
 car = Car('1234', {'Manufacturer': 'Porsche', 'Model': '911 whats your emergency?'}, 225, 55, 'R', 'V')
 
 print(car)
-car.rotating #!!!
+car.rotating()#!!!
 # Be happy, now the car is moving! oh sorry, rotating ^_^
