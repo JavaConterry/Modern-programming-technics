@@ -45,8 +45,6 @@ class Counter:
     def quit_click(self):
         self.parent.destroy()
     def update_password(self):
-        # print(current_value) #logic
-        # random.randint(33, 126)
         self.state.set(PasswordGenerator.new_password(int(self.pass_length)))
 
 
