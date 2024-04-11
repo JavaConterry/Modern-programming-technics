@@ -1,4 +1,5 @@
 import tkinter as tk
+import sys
 from password_generator import PasswordGenerator
 
 
@@ -49,7 +50,12 @@ class Counter:
 
 
 if __name__ == '__main__':
-    window = tk.Tk()
-    window.geometry('150x150')
-    myapp = Counter(window)
-    window.mainloop()
+    try:
+        window = tk.Tk()
+        window.geometry('150x150')
+        myapp = Counter(window)
+        window.mainloop()
+
+        sys.exit(0)
+    except:
+        print('Exception in interface loop', file=sys.stderr)

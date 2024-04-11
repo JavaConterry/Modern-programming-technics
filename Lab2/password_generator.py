@@ -1,6 +1,5 @@
 import random
 
-
 class PasswordGenerator:
     def new_password(length=4):
         password=''

@@ -2,9 +2,12 @@ import unittest
 
 import tkinter as tk
 from password_generator import PasswordGenerator
-from Interface import Counter
+from interface_app import Counter
+from consol_app import main
 
 class TestClass(unittest.TestCase):
+
+
     def test_password_generator(self):
         p_length = 5
         generated_p = PasswordGenerator.new_password(p_length)
@@ -19,11 +22,16 @@ class TestClass(unittest.TestCase):
                 count_in_range+=1
 
         self.assertEqual(count_in_range, 5, 'Password generates wrong characters')
-    
+
+        
     def test_interface(self):
         window = tk.Tk()
         app = Counter(window)
         self.assertEqual(app.state.get(), 0, 'Interface initialisation is failed')
-        
+    
+
+    # def test_console_app(self):
+
+
 if __name__ == '__main__':
     unittest.main()
