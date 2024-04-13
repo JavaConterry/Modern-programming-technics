@@ -1,17 +1,19 @@
 from password_generator import PasswordGenerator
 import sys
 
+# EXCEPTIONS_NUMBER = 0
+
 def main():
-    while(True):
-        input_str = input('Input password length: ')
-        if(input_str == '0'):
+    for inp in sys.stdin:
+        if(inp == '0'):
             break
         try:
-            int_input = int(input_str)
+            int_input = int(inp)
             print(PasswordGenerator.new_password(int_input))
         except:
-            print('Input error', file=sys.stderr)
+            sys.stderr.write('Input type error')
 
+    # if(EXCEPTIONS_NUMBER == 0):
     sys.exit(0)
 
 
