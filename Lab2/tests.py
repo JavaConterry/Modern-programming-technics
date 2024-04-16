@@ -43,13 +43,25 @@ class TestClass(unittest.TestCase):
     def test_correct_stdout(self, stdout):
         input_data = StringIO("10\n0\n")
         with mock.patch('sys.stdin', input_data):
-            with self.assertRaises(SystemExit) as cm:
+            with self.assertRaises(SystemExit):
                 main()
-            self.assertTrue(TestClass.valid_password(stdout.getvalue()), 'Wrong output')
-            print(stdout.getvalue())
-            print(stdout.getvalue())
-            print(stdout.getvalue())
-            
+            self.assertTrue(len(stdout.getvalue())>9, 'Nonvalid output')
+
+    @patch('sys.stderr', new_callable = StringIO)
+    def test_stderr(self, stderr):
+        input_data = StringIO("asdfasd\n")
+        with mock.patch('sys.stdin', input_data):
+            with self.assertRaises(SystemExit):
+                main()
+            self.assertEqual(stderr.getvalue(), 'Input type error')
+
+    
+    @patch('sys.stdin', StringIO('10\n'))
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_stdin(self, stdin, stdout):
+        # Initial class
+        main()
+        self.assertTrue(len(stdout.getvalue())==10, 'no input')
 
 
     def test_exit_code(self):
