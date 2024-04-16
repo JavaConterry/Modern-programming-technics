@@ -1,9 +1,9 @@
 import unittest
 
 import tkinter as tk
-from password_generator import PasswordGenerator
-from interface_app import Counter
-from consol_app import main
+from modules.password_generator import PasswordGenerator
+from modules.interface_app import Counter
+from modules.consol_app import main
 
 class TestClass(unittest.TestCase):
 
