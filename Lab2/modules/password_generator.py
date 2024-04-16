@@ -18,5 +18,5 @@ if __name__=='__main__':
             print(PasswordGenerator.new_password(int_input))
         except:
             sys.stderr.write('Input type error')
-    # sys.stdout.write('Program run seccessfuly, no errors occured')
-    sys.exit(0)
+    # sys.stdout.write('Program ran seccessfuly, no errors occured')
+    # sys.exit(0)
