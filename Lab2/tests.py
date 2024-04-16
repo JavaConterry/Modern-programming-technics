@@ -59,7 +59,6 @@ class TestClass(unittest.TestCase):
     @patch('sys.stdin', StringIO('10\n'))
     @patch('sys.stdout', new_callable=StringIO)
     def test_stdin(self, stdin, stdout):
-        # Initial class
         main()
         self.assertTrue(len(stdout.getvalue())==10, 'no input')
 
