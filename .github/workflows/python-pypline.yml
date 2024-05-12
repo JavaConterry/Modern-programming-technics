@@ -37,9 +37,9 @@ jobs:
         python Lab5/tests.py
     - name: Docker
       run: |
-        docker build -t Lab5/app_docker_image .
-        docker run -p 4000:80 Lab5/app_docker_imag
+        docker build -t lab5/app_docker_image .
+        docker run -p 4000:80 lab5/app_docker_imag
     - name: Test with docker
       run: |
-        docker pull Lab5/app_docker_image
-        docker run Lab5/app_docker_image python -m unittest Lab5/tests.py
+        docker pull lab5/app_docker_image
+        docker run lab5/app_docker_image python -m unittest Lab5/tests.py
