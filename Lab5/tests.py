@@ -3,9 +3,9 @@ from unittest import mock
 from io import StringIO
 import sys
 
-from modules.Person import Person
-from modules.DisabledPerson import DisabledPerson
-from modules.Car import Car
+from src.modules.Person import Person
+from src.modules.DisabledPerson import DisabledPerson
+from src.modules.Car import Car
 
 
 class TestClass(unittest.TestCase):
