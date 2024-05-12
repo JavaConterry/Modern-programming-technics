@@ -34,6 +34,12 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test
       run: |
-        python Lab1/tests.py
-        python Lab2/tests.py
-        
+        python tests.py
+    - name: Docker
+      run: |
+        docker build -t app_docker_image .
+        docker run -p 4000:80 app_docker_imag
+    - name: Test with docker
+      run: |
+        docker pull app_docker_image
+        docker run app_docker_image python -m unittest tests.py
