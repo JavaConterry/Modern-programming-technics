@@ -5,9 +5,9 @@ name: Pypline
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "lab5branch"]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "lab5branch"] 
 
 
 jobs:
