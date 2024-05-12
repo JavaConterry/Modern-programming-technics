@@ -34,7 +34,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test
       run: |
-        python tests.py
+        python Lab5/tests.py
     - name: Docker
       run: |
         docker build -t app_docker_image .
