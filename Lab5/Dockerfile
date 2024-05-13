@@ -7,4 +7,4 @@ COPY . /src
 RUN pip install -r src/requirements.txt
 
 ENTRYPOINT ls -al
-CMD ["python", "main.py"]
+CMD ["python", "src/main.py"]
