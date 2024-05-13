@@ -6,5 +6,5 @@ COPY . /src
 
 RUN pip install -r src/requirements.txt
 
-ENTRYPOINT ls -al
+ENTRYPOINT ls 
 CMD ["python", "src/main.py"]
