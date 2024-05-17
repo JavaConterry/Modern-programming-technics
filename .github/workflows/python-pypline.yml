@@ -37,6 +37,7 @@ jobs:
         python Lab5/tests.py
     - name: Docker
       run: |
+        docker login -u conterry
         pwd; dir; docker build -t lab5/app_docker_image ./Lab5
         docker run --name app_docker lab5/app_docker_image
     - name: Test with docker
