@@ -39,8 +39,8 @@ jobs:
         pwd; dir; docker build -t lab5/app_docker_image ./Lab5
         echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.USERNAME }}" --password-stdin
         echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+        docker pull lab5/app_docker_image
         docker run --name app_docker lab5/app_docker_image
     - name: Test with docker
       run: |
-        docker pull lab5/app_docker_image
         docker run lab5/app_docker_image python -m unittest Lab5/tests.py
