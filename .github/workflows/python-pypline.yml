@@ -42,7 +42,7 @@ jobs:
         # docker pull lab5/app_docker_image
         docker run --name app_docker lab5/app_docker_image
     - name: Push to GH Container Registry
-      run: docker push ghcr.io/javaconterry/lab5/app_docker_image
+      run: docker push ghcr.io/javaconterry/app_docker_image:latest
     - name: Test with docker
       run: |
         docker run lab5/app_docker_image python -m unittest Lab5/tests.py
