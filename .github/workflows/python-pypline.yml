@@ -43,7 +43,7 @@ jobs:
         docker run --name app_docker ghcr.io/javaconterry/app_docker_image
     - name: Push to GH Container Registry
       run: |
-        docker push ghcr.io/javaconterry
+        docker push ghcr.io/javaconterry/app_docker_image
         
     - name: Test with docker
       run: |
