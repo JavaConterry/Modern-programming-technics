@@ -43,7 +43,7 @@ jobs:
         docker run --name app_docker lab5/app_docker_image
     - name: Push to GH Container Registry
       run: |
-        docker push ghcr.io/javaconterry/modern-programming-technics
+        docker push ghcr.io/javaconterry/lab5
         
     - name: Test with docker
       run: |
