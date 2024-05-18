@@ -36,15 +36,15 @@ jobs:
         python Lab5/tests.py
     - name: Docker
       run: |
-        pwd; dir; docker build -t lab5/app_docker_image ./Lab5
+        pwd; dir; docker build -t ghcr.io/javaconterry/app_docker_image ./Lab5
         echo "${{ secrets.DOCKER_TOKEN }}" | docker login -u "${{ secrets.USERNAME }}" --password-stdin
         echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
         # docker pull lab5/app_docker_image
-        docker run --name app_docker lab5/app_docker_image
+        docker run --name app_docker ghcr.io/javaconterry/app_docker_image
     - name: Push to GH Container Registry
       run: |
-        docker push ghcr.io/javaconterry/lab5
+        docker push ghcr.io/javaconterry
         
     - name: Test with docker
       run: |
-        docker run lab5/app_docker_image python -m unittest Lab5/tests.py
+        docker run ghcr.io/javaconterry/app_docker_image python -m unittest Lab5/tests.py
