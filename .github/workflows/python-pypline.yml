@@ -9,6 +9,9 @@ on:
   pull_request:
     branches: [ "main", "lab5branch"] 
 
+env:
+  USERNAME: ${{ secrets.USERNAME }}
+  DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
 
 jobs:
   build:
@@ -37,8 +40,8 @@ jobs:
         python Lab5/tests.py
     - name: Docker
       run: |
-        docker login -u conterry
         pwd; dir; docker build -t lab5/app_docker_image ./Lab5
+        echo $DOCKER_TOKEN | docker login ghcr.io -u $USERNAME --password-stdin
         docker run --name app_docker lab5/app_docker_image
     - name: Test with docker
       run: |
