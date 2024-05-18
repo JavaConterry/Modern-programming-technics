@@ -43,8 +43,7 @@ jobs:
         docker run --name app_docker lab5/app_docker_image
     - name: Push to GH Container Registry
       run: |
-        docker inspect ghcr.io/conterry/lab5/app_docker_image
-        docker push ghcr.io/conterry/lab5/app_docker_image
+        docker push ghcr.io/conterry/lab5
         
     - name: Test with docker
       run: |
