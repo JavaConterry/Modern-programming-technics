@@ -64,7 +64,7 @@ mod tests {
     fn ownership(){
         let mut a = 1;
         add_one_no_return_ownership(a);
-        assert_eq!(a, 2);
+        assert_eq!(a, 1);
     }
 
     fn ret_ownership(){
