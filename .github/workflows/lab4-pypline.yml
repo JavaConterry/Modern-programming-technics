@@ -1,0 +1,26 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+name: lab4-rust-pipeline
+
+on:
+  push:
+    branches: [ "main", "lab5branch" ]
+  pull_request:
+    branches: [ "main", "lab5branch" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Build
+      run: cargo build --verbose
+      working-directory: Lab4/proj
+    - name: Run tests
+      run: cargo test --verbose
+      working-directory: Lab4/proj

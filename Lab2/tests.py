@@ -4,7 +4,7 @@ from unittest import mock
 import sys
 import tkinter as tk
 import os
-from modules import password_generator
+from modules.password_generator import PasswordGenerator
 # from modules.interface_app import Counter
 from modules.consol_app import main
 from io import StringIO
@@ -26,7 +26,7 @@ class TestClass(unittest.TestCase):
 
     def test_password_generator(self):
         p_length = 5
-        generated_p = password_generator.PasswordGenerator.new_password(p_length)
+        generated_p = PasswordGenerator.new_password(p_length)
         self.assertEqual(TestClass.valid_password(generated_p), True, 'Password generates wrong characters')
 
 
