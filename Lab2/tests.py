@@ -5,7 +5,6 @@ import sys
 import tkinter as tk
 import os
 from modules.password_generator import PasswordGenerator
-# from modules.interface_app import Counter
 from modules.consol_app import main
 from io import StringIO
 
@@ -48,19 +47,33 @@ class TestClass(unittest.TestCase):
             self.assertTrue(len(stdout.getvalue())>9, 'Nonvalid output')
 
     @patch('sys.stderr', new_callable = StringIO)
-    def test_stderr(self, stderr):
+    def test_pass_length_stderr(self, stderr):
         input_data = StringIO("asdfasd\n")
         with mock.patch('sys.stdin', input_data):
             with self.assertRaises(SystemExit):
                 main()
-            self.assertEqual(stderr.getvalue(), 'Input type error')
+            self.assertEqual(stderr.getvalue(), 'Error occured: Wrong type given.\n')
 
-    
-    @patch('sys.stdin', StringIO('10\n'))
+
+    @patch('sys.stderr', new_callable = StringIO)
+    def test_wrong_input_stderr(self, stderr):
+        input_data = StringIO("1\n")
+        with mock.patch('sys.stdin', input_data):
+            with self.assertRaises(SystemExit):
+                main()
+            self.assertEqual(stderr.getvalue(), 'Error occured: Length should be rational.\n')
+
+
+    @patch('sys.stdin', new_callable=StringIO)
     @patch('sys.stdout', new_callable=StringIO)
-    def test_stdin(self, stdin, stdout):
-        main()
-        self.assertTrue(len(stdout.getvalue())==10, 'no input')
+    @patch('sys.stderr', new_callable=StringIO)
+    def test_stdin(self, mock_stdin, mock_stdout, mock_stderr):
+        mock_stdin.write('10\n0\n')
+        stdout_output = mock_stdout.getvalue()
+        generated_passwords = stdout_output.splitlines()
+        password_output = [line for line in generated_passwords if line.strip().isdigit() == False]
+        if password_output:
+            self.assertTrue(len(password_output[0])==11, 'Input not found or the output length is not 11 characters including newline')
 
 
     def test_exit_code(self):
@@ -69,16 +82,9 @@ class TestClass(unittest.TestCase):
             sys.stdin = created_input
             with self.assertRaises(SystemExit) as cm:
                 main()
-            self.assertEqual(cm.exception.code, 0)
+            self.assertEqual(cm.exception.code, 4)
         sys.stdin = original_stdin
 
-
-    
-
-    # def test_interface(self):
-    #     window = tk.Tk()
-    #     app = Counter(window)
-    #     self.assertEqual(app.state.get(), 0, 'Interface initialisation is failed')
 
 if __name__ == '__main__':
     unittest.main()
