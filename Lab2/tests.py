@@ -5,6 +5,10 @@ import sys
 import tkinter as tk
 import os
 from modules.password_generator import PasswordGenerator
+<<<<<<< HEAD
+=======
+# from modules.interface_app import Counter
+>>>>>>> 207f238d673c0804545dc98c95378120d363d74a
 from modules.consol_app import main
 from io import StringIO
 
@@ -47,11 +51,16 @@ class TestClass(unittest.TestCase):
             self.assertTrue(len(stdout.getvalue())>9, 'Nonvalid output')
 
     @patch('sys.stderr', new_callable = StringIO)
+<<<<<<< HEAD
     def test_pass_length_stderr(self, stderr):
+=======
+    def test_stderr(self, stderr):
+>>>>>>> 207f238d673c0804545dc98c95378120d363d74a
         input_data = StringIO("asdfasd\n")
         with mock.patch('sys.stdin', input_data):
             with self.assertRaises(SystemExit):
                 main()
+<<<<<<< HEAD
             self.assertEqual(stderr.getvalue(), 'Error occured: Wrong type given.\n')
 
 
@@ -74,6 +83,16 @@ class TestClass(unittest.TestCase):
         password_output = [line for line in generated_passwords if line.strip().isdigit() == False]
         if password_output:
             self.assertTrue(len(password_output[0])==11, 'Input not found or the output length is not 11 characters including newline')
+=======
+            self.assertEqual(stderr.getvalue(), 'Input type error')
+
+    
+    @patch('sys.stdin', StringIO('10\n'))
+    @patch('sys.stdout', new_callable=StringIO)
+    def test_stdin(self, stdin, stdout):
+        main()
+        self.assertTrue(len(stdout.getvalue())==10, 'no input')
+>>>>>>> 207f238d673c0804545dc98c95378120d363d74a
 
 
     def test_exit_code(self):
@@ -82,9 +101,23 @@ class TestClass(unittest.TestCase):
             sys.stdin = created_input
             with self.assertRaises(SystemExit) as cm:
                 main()
+<<<<<<< HEAD
             self.assertEqual(cm.exception.code, 4)
         sys.stdin = original_stdin
 
 
+=======
+            self.assertEqual(cm.exception.code, 0)
+        sys.stdin = original_stdin
+
+
+    
+
+    # def test_interface(self):
+    #     window = tk.Tk()
+    #     app = Counter(window)
+    #     self.assertEqual(app.state.get(), 0, 'Interface initialisation is failed')
+
+>>>>>>> 207f238d673c0804545dc98c95378120d363d74a
 if __name__ == '__main__':
     unittest.main()
